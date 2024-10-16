@@ -1,0 +1,177 @@
+/* styles.css */
+
+/* CSS Variables for Color Palette */
+:root {
+    --teal-light: rgba(224, 247, 250, 0.8); /* Added opacity for watery effect */
+    --teal-medium: #4db6ac;
+    --teal-dark: #00796b;
+    --teal-darker: #004d40;
+    --text-color: #f0f0f0; /* Changed for better contrast on dark background */
+    --background-color: #121212; /* Dark background color */
+    --input-background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    --border-color: #4db6ac; /* Adjusted for visibility */
+    --watermark-color: rgba(0, 121, 107, 0.1); /* Teal Dark with low opacity */
+}
+
+/* Reset some default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #3b5652;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-image:url(image.jpg);
+   background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+/* Watermark Styling */
+.container {
+    position: relative; /* Added for watermark positioning */
+    width: 100%;
+    max-width: 600px;
+    
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Darker shadow for better contrast */
+    backdrop-filter: blur(10px); /* Optional: adds a blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border */
+    overflow: hidden; /* Hide any overflow from the pseudo-element */
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 100 100'><line x1='50' y1='0' x2='50' y2='100' stroke='%23ffffff' stroke-width='10'/><line x1='0' y1='50' x2='100' y2='50' stroke='%23ffffff' stroke-width='10'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.05; /* Reduced opacity for subtlety */
+    transform: translate(-50%, -50%) rotate(0deg); /* Center the watermark */
+    pointer-events: none; /* Ensure it doesn't block form interactions */
+    z-index: 0; /* Place it behind the form content */
+}
+
+.container > * {
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+h2{
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 25px;   
+}
+
+form label {
+    display: block;
+    margin-top: 20px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1em;
+}
+
+form input[type="text"],
+form input[type="tel"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent input background */
+    font-size: 1em;
+    color: #f0f0f0; /* Text color for better contrast */
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+form input[type="text"]::placeholder,
+form input[type="tel"]::placeholder,
+form input[type="email"]::placeholder,
+form textarea::placeholder {
+    color: #e0e0e0; /* Lighter placeholder text */
+}
+
+form input[type="text"]:focus,
+form input[type="tel"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+    border-color: var(--teal-medium);
+    box-shadow: 0 0 5px rgba(77, 182, 172, 0.5);
+    outline: none;
+}
+
+form textarea {
+    resize: vertical;
+    height: 100px; /* Adjusted height for better appearance */
+}
+
+form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    background-color: var(--teal-medium);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+form input[type="submit"]:hover {
+    background-color: var(--teal-dark);
+    transform: translateY(-2px);
+}
+
+form input[type="submit"]:active {
+    background-color: var(--teal-darker);
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 20px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    form label {
+        font-size: 0.95em;
+    }
+
+    form input[type="submit"] {
+        font-size: 1em;
+    }
+}
